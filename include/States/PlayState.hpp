@@ -7,7 +7,8 @@
 #include "Timer.hpp"
 #include "Button.hpp"
 #include "Move.hpp"
-#include "Abilities/Ability.hpp"
+#include "Music.hpp"
+
 
 class PlayState : public GameState
 {
@@ -18,14 +19,24 @@ public:
     virtual GameState *update(sf::RenderWindow &, StateList &) override;
     virtual void render(sf::RenderWindow &) override;
 
+
+bool handlePauseButtonClick(sf::Event &event);
+void handleTileSelection(sf::Event &event, sf::RenderWindow &window);
+void processFirstTileSelection(size_t i, size_t j);
+void processSecondTileSelection(size_t i, size_t j, sf::RenderWindow &window);
+void resetFirstTile(size_t i, size_t j);
+bool isAdjacent(size_t firstI, size_t firstJ, size_t secondI, size_t secondJ);
+
 private:
     Board gameBoard;
     Score gameScore;
     Timer gameTimer;
     Move gameMove;
-    std::array<Ability *, NUM_OF_ABILITIES> abilities;
+    
     Button pauseButton;
+   
     void saveGameInformations() const;
+    
 };
 
 #endif

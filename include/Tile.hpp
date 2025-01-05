@@ -16,7 +16,7 @@ public:
 private:
     sf::Sprite tileSprite;
     sf::Texture tileTexture;
-    sf::Texture selectedTileTexture;
+   
 };
 
 #endif

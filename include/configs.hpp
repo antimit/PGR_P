@@ -2,12 +2,12 @@
 #define CONFIGS_IG
 
 // Window Settings
-#define WINDOW_HEIGHT 600
-#define WINDOW_WIDTH 700
-#define WINDOW_TITLE "Jewel Castle"
+#define WINDOW_HEIGHT 1000
+#define WINDOW_WIDTH 1000
+#define WINDOW_TITLE "Candy Crush"
 
 // States Settings
-#define NUMBER_OF_STATES 5
+#define NUMBER_OF_STATES 6
 
 // Directory Settings
 #define BACKGROUND_DIRECTORY "assets/backgrounds/"
@@ -18,10 +18,11 @@
 #define BUTTON_TEXTURE_DIRECTORY "assets/buttonsTexture/"
 #define TILE_TEXTURE_DIRECTORY "assets/tilesTexture/"
 #define DATA_DIRECTORY "assets/datas/"
+#define MUSIC_DIRECTORY "assets/music/"
 
 // Board Settings
-#define TILE_HEIGHT 45.f
-#define TILE_WIDTH 45.f
+#define TILE_HEIGHT 64.f
+#define TILE_WIDTH 64.f
 #define NUM_OF_ROW 9
 #define NUM_OF_COLUMN 9
 
@@ -34,7 +35,7 @@
 #define VIOLET_JEWEL_SCORE 15
 
 // Game Settings
-#define REQUIRED_SCORE 1200
+#define REQUIRED_SCORE 300
 #define NUM_OF_ABILITIES 3
 #define TIMER_COUNTDOWN 32
 #define NUM_OF_MOVE 32

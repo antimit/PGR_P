@@ -3,7 +3,7 @@
 
 #include "States/GameState.hpp"
 #include "Button.hpp"
-
+#include "Music.hpp"
 class MainMenuState : public GameState
 {
 public:
@@ -14,7 +14,9 @@ public:
 
 private:
     Button playButton;
+    Button optionsButton;
     Button exitButton;
+    
 };
 
 #endif

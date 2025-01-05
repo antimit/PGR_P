@@ -12,7 +12,8 @@ enum States
     PLAY,
     PAUSE,
     WIN,
-    LOST
+    LOST,
+    OPTIONS
 };
 
 class GameState

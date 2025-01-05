@@ -4,6 +4,8 @@
 #include <SFML/Graphics.hpp>
 #include "configs.hpp"
 #include <string>
+#include <iostream>
+
 
 enum JewelsEnum
 {

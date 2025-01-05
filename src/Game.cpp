@@ -3,6 +3,7 @@
 #include "States/MainMenuState.hpp"
 #include "States/WinState.hpp"
 #include "States/LostState.hpp"
+#include "States/OptionState.hpp"
 
 Game::Game() : mainWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE, sf::Style::Close), currentState(nullptr)
 {
@@ -23,6 +24,7 @@ void Game::init()
     statesList[PAUSE] = new PauseState();
     statesList[WIN] = new WinState();
     statesList[LOST] = new LostState();
+    statesList[OPTIONS] = new OptionsState();
     currentState = statesList[MAINMENU];
     run();
 }

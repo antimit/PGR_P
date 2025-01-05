@@ -27,9 +27,17 @@ public:
     void render(sf::RenderWindow &);
     void swapTwoJewels(size_t, size_t, size_t, size_t, sf::RenderWindow &);
     scorePair refreshBoard();
-    unsigned int removeRow(size_t);
-    unsigned int removeRectangle(size_t, size_t);
-    unsigned int removeThreeRowColumn(size_t, size_t);
+    void validateAndReplaceJewels(size_t i1, size_t j1, size_t i2, size_t j2, size_t i3, size_t j3);
+    bool isCombinationInvalid(size_t i1, size_t j1, size_t i2, size_t j2, size_t i3, size_t j3) const;
+
+
+    void refreshHorizontally(scorePair &result, us &numberOfDeletedJewel);
+    void refreshVertically(scorePair &result, us &numberOfDeletedJewel);
+    void handleHorizontalMatch(int i, size_t j, scorePair &result, us &numberOfDeletedJewel);
+    void handleVerticalMatch(int i, size_t j, scorePair &result, us &numberOfDeletedJewel);
+    void shiftColumnUp(int i, size_t column, us jewelScore);
+
+
 
 private:
     const size_t numberOfRow = NUM_OF_ROW;

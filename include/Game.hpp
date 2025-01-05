@@ -5,6 +5,8 @@
 #include "configs.hpp"
 #include "States/GameState.hpp"
 #include <array>
+#include "MemoryTracker.hpp"
+#include "Slider.hpp"
 
 typedef std::array<GameState*,NUMBER_OF_STATES> StateList;
 
