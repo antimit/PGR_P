@@ -25,19 +25,24 @@ To run this project, you need:
 Step 1️⃣: Clone the Repository
 
 git clone git@github.com:antimit/PGR_P.git
+
 Step 2️⃣: 
+
 cd PGR_P
 
 
 Step 3️⃣: Install Required Libraries
 
 Debian:
+
 sudo apt-get install libsfml-dev
 
 Fedora:
+
 sudo dnf install SFML SFML-devel
 
 Arch:
+
 sudo pacman -S sfml
 
 
