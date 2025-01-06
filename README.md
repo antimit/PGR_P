@@ -70,23 +70,27 @@ Programming Language: C++
 
 
 📚 Documentation
+🔍 How It Works
+The program implements Candy Crush gameplay using a grid-based system and relies on object-oriented design principles for modularity and clarity.
 
-🔍 Problem Description
+Key Components:
+Game Board
+The game board is represented as a 2D grid of jewels. It handles:
 
+Candy placement and initialization.
+Detecting matches of three or more candies in rows or columns.
+Game Logic
 
-🟦 Grid-based gameplay logic.
+Matching Detection: When a match is found the matched candies are removed and candies above  them fall into their place.
+Scoring System: Players cat earn points based on the number and type of matches he or she destroyed.
+Rendering and Animation
 
-🍬 Detection of matching candies.
+Utilizes the SFML library to draw the game board, candies, and animations.
+Smooth visual effects for cascading and removal of matched candies.
+User Interaction
 
-📊 Score calculation and cascading effects.
-
-
-The program uses:
-
-🛠️ Object-oriented design principles for modularity and clarity.
-
-🖼️ SFML library functions for rendering, audio, and user input handling.
-
+Players can swap two adjacent candies using mouse input.
+Invalid moves are detected and prevented.
 
 
 
