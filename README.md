@@ -66,7 +66,7 @@ Step 5️⃣: Run the Program
 
 🛠️ Project Details
 
-Programming Language: C++
+Programming Language: C++(SFML),
 
 
 📚 Documentation
@@ -85,11 +85,7 @@ Matching Detection: When a match is found the matched candies are removed and ca
 Scoring System: Players cat earn points based on the number and type of matches he or she destroyed.
 Rendering and Animation
 
-Utilizes the SFML library to draw the game board, candies, and animations.
-Smooth visual effects for cascading and removal of matched candies.
-User Interaction
-
-Players can swap two adjacent candies using mouse input.
+Players can swap two adjacent candies using mouse.
 Invalid moves are detected and prevented.
 
 
