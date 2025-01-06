@@ -30,22 +30,29 @@ public:
     void validateAndReplaceJewels(size_t i1, size_t j1, size_t i2, size_t j2, size_t i3, size_t j3);
     bool isCombinationInvalid(size_t i1, size_t j1, size_t i2, size_t j2, size_t i3, size_t j3) const;
 
-
     void refreshHorizontally(scorePair &result, us &numberOfDeletedJewel);
     void refreshVertically(scorePair &result, us &numberOfDeletedJewel);
     void handleHorizontalMatch(int i, size_t j, scorePair &result, us &numberOfDeletedJewel);
     void handleVerticalMatch(int i, size_t j, scorePair &result, us &numberOfDeletedJewel);
     void shiftColumnUp(int i, size_t column, us jewelScore);
 
+    
+    
 
+    
+    void markMatches(std::vector<std::vector<bool>> &markedForDeletion);
+
+    
+    void handleColumnGravity(size_t column, std::vector<std::vector<bool>> &markedForDeletion,
+                             scorePair &result, us &numberOfDeletedJewel);
 
 private:
     const size_t numberOfRow = NUM_OF_ROW;
     const size_t numberOfColumn = NUM_OF_COLUMN;
     TileList listOfTiles;
     JewelList listOfJewels;
-    bool isJewelsCombinationValid() const; // utility member function for check jewels combination
-    void validateJewels();                 // utility member function for validating jewels combination
+    bool isJewelsCombinationValid() const; 
+    void validateJewels();                 
 };
 
 #endif

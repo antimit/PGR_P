@@ -14,14 +14,14 @@ WinState::WinState() : restartButton(BUTTON_TEXTURE_DIRECTORY + string("restart_
 }
 GameState *WinState::eventHandler(sf::RenderWindow &window, StateList &state, sf::Event &event)
 {
-    // checks whether the restart button is selected or not
+    
     if(restartButton.isPressedButton(window,event))
             {
                 delete state[PLAY];
                 state[PLAY] = new PlayState();
                 return state[PLAY];
             }
-    // checks whether the main menu button is selected or not
+    
    if(mainmenuButton.isPressedButton(window,event))
             {
                 delete state[PLAY];

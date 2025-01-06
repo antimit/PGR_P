@@ -25,7 +25,7 @@ struct ChoosenEntity second;
 PlayState::PlayState() : gameScore(REQUIRED_SCORE), gameTimer(TIMER_COUNTDOWN), gameMove(NUM_OF_MOVE),
                          pauseButton(BUTTON_TEXTURE_DIRECTORY + string("pause_button.png")) 
 {
-    // initialize each elements to nullptr
+ 
     
     backgroundPath = "play_background.jpg";
     setBackground();
@@ -34,16 +34,14 @@ PlayState::PlayState() : gameScore(REQUIRED_SCORE), gameTimer(TIMER_COUNTDOWN), 
     gameScore.setScoreProgressBarPosition(730, 0);
     gameTimer.setTimerProgressBarPosition(730, 90);
     gameMove.setMoveProgressBarPosition(730, 180);
-    // backgroundMusic.setVolume(50);
-    // backgroundMusic.play();
-    
+ 
     
     
 }
 
 PlayState::~PlayState()
 {
-    // delete each ability that allocated dynamically
+    
    
 }
 
@@ -135,8 +133,8 @@ void PlayState::resetFirstTile(size_t i, size_t j)
 
 bool PlayState::isAdjacent(size_t firstI, size_t firstJ, size_t secondI, size_t secondJ)
 {
-    return (firstI == secondI && std::abs((int)firstJ - (int)secondJ) == 1) ||  // Same row, adjacent columns
-           (firstJ == secondJ && std::abs((int)firstI - (int)secondI) == 1);   // Same column, adjacent rows
+    return (firstI == secondI && std::abs((int)firstJ - (int)secondJ) == 1) ||  
+           (firstJ == secondJ && std::abs((int)firstI - (int)secondI) == 1);   
 }
 
 
@@ -146,24 +144,13 @@ GameState *PlayState::update(sf::RenderWindow &window, StateList &state)
     gameTimer.updateTime();
     if (gameTimer.getCountDownTime() < 0)
     {
-        // saveGameInformations();
         return state[LOST];
     }
     if (gameScore.getCurrentScore() >= gameScore.getRequiredScore())
     {
-        // saveGameInformations();
         return state[WIN];
     }
-    // SliderSFML & slider = SliderSFML::getInstance();
-    // if(slider.changed)
-    // {
-    //     float volume = slider.getSliderValue(); 
-    //     std::cout << volume << std::endl;
-    //     music.setVolume(volume);
-    //     slider.changed = false;
-    // }
    
-    // backgroundMusic.update_music_volume();
     return this;
 }
 

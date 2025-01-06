@@ -22,14 +22,14 @@ class SliderSFML
 	float sliderValue;
 	
 public:
-	// Static method to get the single instance of the class
+	
     static SliderSFML& getInstance(int x = 0, int y = 0)
     {
-        static SliderSFML instance(x, y);  // Only one instance of SliderSFML exists
+        static SliderSFML instance(x, y);  
         return instance;
     }
 
-    // Delete copy constructor and assignment operator to ensure a single instance
+    
     SliderSFML(const SliderSFML&) = delete;
     SliderSFML& operator=(const SliderSFML&) = delete;
 	sf::Text returnText(int x, int y, std::string z, int fontSize);

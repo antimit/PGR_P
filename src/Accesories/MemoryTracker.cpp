@@ -3,7 +3,7 @@
 MemoryTracker::MemoryTracker() {}
 
 MemoryTracker::~MemoryTracker() {
-    cleanup(); // Ensure cleanup is called at destruction
+    cleanup(); 
 }
 
 MemoryTracker& MemoryTracker::getInstance() {
@@ -13,7 +13,7 @@ MemoryTracker& MemoryTracker::getInstance() {
 
 void MemoryTracker::cleanup() {
     for (const auto& deleter : allocatedObjects) {
-        deleter.deleter(deleter.ptr); // Call the stored deleter
+        deleter.deleter(deleter.ptr); 
     }
     allocatedObjects.clear();
 }
