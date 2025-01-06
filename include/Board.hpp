@@ -30,14 +30,21 @@ public:
     void validateAndReplaceJewels(size_t i1, size_t j1, size_t i2, size_t j2, size_t i3, size_t j3);
     bool isCombinationInvalid(size_t i1, size_t j1, size_t i2, size_t j2, size_t i3, size_t j3) const;
 
-
     void refreshHorizontally(scorePair &result, us &numberOfDeletedJewel);
     void refreshVertically(scorePair &result, us &numberOfDeletedJewel);
     void handleHorizontalMatch(int i, size_t j, scorePair &result, us &numberOfDeletedJewel);
     void handleVerticalMatch(int i, size_t j, scorePair &result, us &numberOfDeletedJewel);
     void shiftColumnUp(int i, size_t column, us jewelScore);
 
+    // temp
+    // scorePair refreshBoard();
 
+    // Helper function to mark all matches (horizontal and vertical) in the board.
+    void markMatches(std::vector<std::vector<bool>> &markedForDeletion);
+
+    // Helper function to process a single column: apply gravity, delete marked jewels, and refill empty slots.
+    void handleColumnGravity(size_t column, std::vector<std::vector<bool>> &markedForDeletion,
+                             scorePair &result, us &numberOfDeletedJewel);
 
 private:
     const size_t numberOfRow = NUM_OF_ROW;

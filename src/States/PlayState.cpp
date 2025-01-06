@@ -25,7 +25,7 @@ struct ChoosenEntity second;
 PlayState::PlayState() : gameScore(REQUIRED_SCORE), gameTimer(TIMER_COUNTDOWN), gameMove(NUM_OF_MOVE),
                          pauseButton(BUTTON_TEXTURE_DIRECTORY + string("pause_button.png")) 
 {
-    // initialize each elements to nullptr
+ 
     
     backgroundPath = "play_background.jpg";
     setBackground();
@@ -34,9 +34,7 @@ PlayState::PlayState() : gameScore(REQUIRED_SCORE), gameTimer(TIMER_COUNTDOWN), 
     gameScore.setScoreProgressBarPosition(730, 0);
     gameTimer.setTimerProgressBarPosition(730, 90);
     gameMove.setMoveProgressBarPosition(730, 180);
-    // backgroundMusic.setVolume(50);
-    // backgroundMusic.play();
-    
+ 
     
     
 }
@@ -146,24 +144,13 @@ GameState *PlayState::update(sf::RenderWindow &window, StateList &state)
     gameTimer.updateTime();
     if (gameTimer.getCountDownTime() < 0)
     {
-        // saveGameInformations();
         return state[LOST];
     }
     if (gameScore.getCurrentScore() >= gameScore.getRequiredScore())
     {
-        // saveGameInformations();
         return state[WIN];
     }
-    // SliderSFML & slider = SliderSFML::getInstance();
-    // if(slider.changed)
-    // {
-    //     float volume = slider.getSliderValue(); 
-    //     std::cout << volume << std::endl;
-    //     music.setVolume(volume);
-    //     slider.changed = false;
-    // }
    
-    // backgroundMusic.update_music_volume();
     return this;
 }
 
