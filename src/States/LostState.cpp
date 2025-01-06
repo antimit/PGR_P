@@ -30,7 +30,7 @@ GameState *LostState::eventHandler(sf::RenderWindow &window, StateList &state,
 		state[PLAY] = new PlayState();
 		return (state[PLAY]);
 	}
-	// checks whether the main menu button is selected or not
+	
 	if (mainmenuButton.isPressedButton(window, event))
 	{
 		state[PLAY] = nullptr;

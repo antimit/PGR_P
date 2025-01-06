@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// function for generating random number
+
 us generateRandomNumber(us range1, us range2)
 {
     if (range1 > range2) 
@@ -14,6 +14,6 @@ us generateRandomNumber(us range1, us range2)
     static std::random_device randomDevice;   
     static std::mt19937 mt(randomDevice());  
     std::uniform_int_distribution<unsigned short> distribution(range1, range2);
-    return distribution(mt); // Generate random number
+    return distribution(mt); 
 
 }

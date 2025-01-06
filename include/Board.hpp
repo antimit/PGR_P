@@ -36,13 +36,13 @@ public:
     void handleVerticalMatch(int i, size_t j, scorePair &result, us &numberOfDeletedJewel);
     void shiftColumnUp(int i, size_t column, us jewelScore);
 
-    // temp
-    // scorePair refreshBoard();
+    
+    
 
-    // Helper function to mark all matches (horizontal and vertical) in the board.
+    
     void markMatches(std::vector<std::vector<bool>> &markedForDeletion);
 
-    // Helper function to process a single column: apply gravity, delete marked jewels, and refill empty slots.
+    
     void handleColumnGravity(size_t column, std::vector<std::vector<bool>> &markedForDeletion,
                              scorePair &result, us &numberOfDeletedJewel);
 
@@ -51,8 +51,8 @@ private:
     const size_t numberOfColumn = NUM_OF_COLUMN;
     TileList listOfTiles;
     JewelList listOfJewels;
-    bool isJewelsCombinationValid() const; // utility member function for check jewels combination
-    void validateJewels();                 // utility member function for validating jewels combination
+    bool isJewelsCombinationValid() const; 
+    void validateJewels();                 
 };
 
 #endif

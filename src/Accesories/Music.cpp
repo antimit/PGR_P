@@ -1,28 +1,28 @@
 #include "Music.hpp"
 #include <iostream>
 
-// Initialize the static instance pointer to nullptr
+
 Music* Music::instance = nullptr;
 
 Music::Music(const std::string &musicFilePath) 
 {
-    if (!music.openFromFile(musicFilePath))  // Try to load the music file
+    if (!music.openFromFile(musicFilePath))  
     {
         std::cout << "Error loading music from file: " << musicFilePath << std::endl;
     }
     else
     {
-        music.setVolume(50);  // Set initial volume (50% as a default)
+        music.setVolume(50);  
         music.setLoop(true);
     }
 }
 
 Music& Music::getInstance(const std::string &musicFilePath)
 {
-    // Check if the instance is already created, if not create it
+    
     if (instance == nullptr)
     {
-        instance = new Music(musicFilePath);  // Create the instance if it's not yet created
+        instance = new Music(musicFilePath);  
     }
     return *instance;
 }
@@ -30,40 +30,40 @@ Music& Music::getInstance(const std::string &musicFilePath)
 void Music::update_music_volume()
 {
     SliderSFML &slider = SliderSFML::getInstance();
-    float volume = slider.getSliderValue(); // Get the slider value (expected range: 0 to 100)
-    // std::cout <<"Volume updated" <<std::endl;
-    music.setVolume(volume); // Set the volume of the music (0 to 100 range)
+    float volume = slider.getSliderValue(); 
+    
+    music.setVolume(volume); 
 }
 
 void Music::play()
 {
-    if (music.getStatus() != sf::Music::Playing)  // Check if music is already playing
+    if (music.getStatus() != sf::Music::Playing)  
     {
-        music.play();  // Play the music
+        music.play();  
     }
 }
 
 void Music::stop()
 {
-    music.stop();  // Stop the music
+    music.stop();  
 }
 
 void Music::setLoop()
 {
-    music.setLoop(true);  // Loop the music
+    music.setLoop(true);  
 }
 
 void Music::setVolume(float volume)
 {
-    music.setVolume(volume);  // Set the volume directly
+    music.setVolume(volume);  
 }
 
 void Music::pause()
 {
-    music.pause();  // Pause the music
+    music.pause();  
 }
 
 bool Music::isPlaying() const
 {
-    return music.getStatus() == sf::Music::Playing;  // Check if the music is playing
+    return music.getStatus() == sf::Music::Playing;  
 }

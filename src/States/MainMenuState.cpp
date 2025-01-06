@@ -48,7 +48,7 @@ GameState *MainMenuState::update(sf::RenderWindow &window, StateList &state)
 	exitButton.HandleHover(window);
 	SliderSFML & slider = SliderSFML::getInstance();
 	float volume = slider.getSliderValue();
-	// std::cout << volume << std::endl;
+	
 	return (this);
 }
 void MainMenuState::render(sf::RenderWindow &window)

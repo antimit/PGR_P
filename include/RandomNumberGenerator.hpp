@@ -3,7 +3,7 @@
 
 typedef unsigned short int us;
 
-// function for generating random number
+
 us generateRandomNumber(us, us);
 
 #endif

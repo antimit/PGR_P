@@ -41,7 +41,7 @@ PlayState::PlayState() : gameScore(REQUIRED_SCORE), gameTimer(TIMER_COUNTDOWN), 
 
 PlayState::~PlayState()
 {
-    // delete each ability that allocated dynamically
+    
    
 }
 
@@ -133,8 +133,8 @@ void PlayState::resetFirstTile(size_t i, size_t j)
 
 bool PlayState::isAdjacent(size_t firstI, size_t firstJ, size_t secondI, size_t secondJ)
 {
-    return (firstI == secondI && std::abs((int)firstJ - (int)secondJ) == 1) ||  // Same row, adjacent columns
-           (firstJ == secondJ && std::abs((int)firstI - (int)secondI) == 1);   // Same column, adjacent rows
+    return (firstI == secondI && std::abs((int)firstJ - (int)secondJ) == 1) ||  
+           (firstJ == secondJ && std::abs((int)firstI - (int)secondI) == 1);   
 }
 
 
