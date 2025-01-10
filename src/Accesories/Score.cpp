@@ -56,3 +56,12 @@ void Score::render(sf::RenderWindow &window)
     window.draw(this->scoreSprite);
     window.draw(this->scoreText);
 }
+void Score::setRequiredScore(int score)
+{
+    this->requiredScore = score;   
+}
+
+void Score::resetScore()
+{
+    this->currentScore = 0;
+}

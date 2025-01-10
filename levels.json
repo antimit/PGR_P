@@ -4,7 +4,7 @@
         "id": 1,
         "background": "play_background.jpg",
         "timer": 60,
-        "requiredScore": 1000,
+        "requiredScore": 200,
         "numberOfMoves": 30,
         "specialItems": {
           "bombs": 3,
@@ -13,9 +13,9 @@
       },
       {
         "id": 2,
-        "background": "assets/backgrounds/play_background.jpg",
+        "background": "play_background.jpg",
         "timer": 45,
-        "requiredScore": 1500,
+        "requiredScore": 500,
         "numberOfMoves": 25,
         "specialItems": {
           "bombs": 5,

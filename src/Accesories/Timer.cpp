@@ -45,3 +45,7 @@ void Timer::render(sf::RenderWindow &window)
     window.draw(this->timerSprite);
     window.draw(this->timerText);
 }
+ void Timer::setCountDownTime(int time)
+ {
+    this->countDown = sf::seconds(time);
+ }

@@ -16,6 +16,8 @@ public:
     us getRequiredScore() const;
     void setScoreProgressBarPosition(float, float);
     void render(sf::RenderWindow&);
+    void setRequiredScore(int score);
+    void resetScore();
 
 private:
     us currentScore;

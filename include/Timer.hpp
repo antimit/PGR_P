@@ -11,6 +11,7 @@ public:
     int getCountDownTime() const;
     void setTimerProgressBarPosition(float, float);
     void render(sf::RenderWindow &);
+    void setCountDownTime(int time);
 
 private:
     sf::Time countDown;

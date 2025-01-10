@@ -50,13 +50,9 @@ PlayState::PlayState(const LevelData& levelData) : gameScore(levelData.requiredS
     
     setBackground();
     pauseButton.setButtonPosition(0, 0);
-   
     gameScore.setScoreProgressBarPosition(730, 0);
     gameTimer.setTimerProgressBarPosition(730, 90);
     gameMove.setMoveProgressBarPosition(730, 180);
- 
-    
-    
 }
 
 PlayState::~PlayState()
@@ -165,22 +161,49 @@ GameState *PlayState::update(sf::RenderWindow &window, StateList &state)
 {
     pauseButton.HandleHover(window);
     gameTimer.updateTime();
+    
+    // Check if time is up
     if (gameTimer.getCountDownTime() < 0)
     {
         return state[LOST];
     }
+
+    // Check if score meets or exceeds the required score
     if (gameScore.getCurrentScore() >= gameScore.getRequiredScore())
     {
-        return state[WIN];
+        // Try to load the next level
+        try
+        {
+            LoadLevel &loader = LoadLevel::getInstance();
+            LevelData nextLevelData = loader.loadLevel(loader.currentLevel + 1);
+
+            // If successful, update PlayState with the new level data
+            loader.currentLevel++;
+            backgroundPath = nextLevelData.backgroundPath;
+            gameTimer.setCountDownTime(nextLevelData.timer);
+            gameScore.setRequiredScore(nextLevelData.requiredScore);
+            gameScore.resetScore(); // Reset the current score for the new level
+
+            // Load the new background
+            setBackground();
+            return this; // Stay in PlayState for the next level
+        }
+        catch (const std::runtime_error &e)
+        {
+            // If no next level, transition to the WIN state
+            std::cerr << "No next level: " << e.what() << std::endl;
+            return state[WIN];
+        }
     }
+
     // Update particle system
     static sf::Clock particleClock;  // Dedicated clock for particles
     float deltaTime = particleClock.restart().asSeconds();
-    
-    
-    particleSource.updateParticles(deltaTime);   
-    return this;
+    particleSource.updateParticles(deltaTime);
+
+    return this; // Continue in the current state
 }
+
 
 void PlayState::render(sf::RenderWindow &window)
 {
