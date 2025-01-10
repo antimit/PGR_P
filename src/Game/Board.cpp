@@ -64,6 +64,7 @@ void Board::render(sf::RenderWindow &window)
     for (auto row : listOfJewels)
         for (auto jewel : row)
             jewel->render(window);
+    
 }
 
 size_t Board::getNumberOfRow() const
@@ -249,7 +250,7 @@ void Board::swapTwoJewels(size_t i1, size_t j1, size_t i2, size_t j2, sf::Render
     std::swap(listOfJewels[i1][j1], listOfJewels[i2][j2]);
 }
 
-scorePair Board::refreshBoard()
+scorePair Board::refreshBoard(ParticleSource &particleSource)
 {
     us numberOfDeletedJewel = 0;
     scorePair result;
@@ -263,10 +264,10 @@ scorePair Board::refreshBoard()
         
         for (size_t j = 0; j < numberOfColumn; j++)
         {
-            handleColumnGravity(j, markedForDeletion, result, numberOfDeletedJewel);
+            handleColumnGravity(j, markedForDeletion, result, numberOfDeletedJewel, particleSource);
         }
     }
-
+    
     return result;
 }
 
@@ -303,7 +304,7 @@ void Board::markMatches(std::vector<std::vector<bool>> &markedForDeletion)
     }
 }
 
-void Board::handleColumnGravity(size_t column, std::vector<std::vector<bool>> &markedForDeletion, scorePair &result, us &numberOfDeletedJewel)
+void Board::handleColumnGravity(size_t column, std::vector<std::vector<bool>> &markedForDeletion, scorePair &result, us &numberOfDeletedJewel, ParticleSource &particleSource)
 {
     us jewelScore = 0;
     size_t writeIndex = numberOfRow - 1;
@@ -326,6 +327,22 @@ void Board::handleColumnGravity(size_t column, std::vector<std::vector<bool>> &m
             {
                 jewelScore = listOfJewels[i][column]->getJewelScore();
             }
+             // Add particle effect
+             sf::Color jewelColor = listOfJewels[i][column]->getJewelColor();
+            sf::Vector2f jewelPosition(column * 64.0f, i * 64.0f);
+
+            // Add particle effect for this jewel
+            sf::Vector2f explosionPosition = listOfTiles[i][column]->getTilePosition(); // Replace with actual position logic
+            particleSource.setPosition(explosionPosition);
+
+
+            // Optionally, customize particle size, lifetime, etc., for a dramatic effect
+            particleSource.setParticleSize(5.0f);
+            particleSource.PositionSet = true;
+
+            // Update particle system to reflect the explosion
+            // particleSource.updateParticles(1.0f); // Trigger immediate update
+            
             delete listOfJewels[i][column];
             listOfJewels[i][column] = nullptr;
             numberOfDeletedJewel++;

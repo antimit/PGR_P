@@ -8,6 +8,8 @@
 #include "Button.hpp"
 #include "Move.hpp"
 #include "Music.hpp"
+#include "ParticleSystem.hpp"
+#include "World.hpp"
 
 
 class PlayState : public GameState
@@ -34,8 +36,17 @@ private:
     Move gameMove;
     
     Button pauseButton;
-   
-    void saveGameInformations() const;
+    ParticleSource particleSource;
+    
+
+   //temp
+//    const int width = 800;
+//     const int height = 800;
+//     const int fps = 30;
+//     const int substeps = 6;
+//      int n_particles = 0;
+    //  psim::World;
+
     
 };
 

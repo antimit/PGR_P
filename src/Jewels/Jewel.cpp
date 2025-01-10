@@ -37,4 +37,9 @@ bool Jewel::operator==(const Jewel &secondJewel)
     return this->score == secondJewel.score;
 }
 
+sf::Color Jewel::getJewelColor()
+{
+    return jewelSprite.getColor();
+}
+
 Jewel::~Jewel(){};

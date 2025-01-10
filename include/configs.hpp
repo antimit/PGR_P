@@ -35,7 +35,7 @@
 #define VIOLET_JEWEL_SCORE 15
 
 // Game Settings
-#define REQUIRED_SCORE 300
+#define REQUIRED_SCORE 1300
 #define NUM_OF_ABILITIES 3
 #define TIMER_COUNTDOWN 32
 #define NUM_OF_MOVE 32

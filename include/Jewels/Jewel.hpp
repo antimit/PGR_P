@@ -25,6 +25,9 @@ public:
     unsigned int getJewelScore() const;
     void render(sf::RenderWindow &);
     void setJewelPosition(float, float);
+    sf::Color getJewelColor();
+    
+
     void moveJewel(float, float);
     bool operator==(const Jewel &);
 

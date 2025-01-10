@@ -23,7 +23,23 @@ struct ChoosenEntity second;
 
 
 PlayState::PlayState() : gameScore(REQUIRED_SCORE), gameTimer(TIMER_COUNTDOWN), gameMove(NUM_OF_MOVE),
-                         pauseButton(BUTTON_TEXTURE_DIRECTORY + string("pause_button.png")) 
+                         pauseButton(BUTTON_TEXTURE_DIRECTORY + string("pause_button.png")) , particleSource(50, 0.05f, [](float t, Particle &p) {
+  // Generate a random direction based on the seed
+    float angle = 2 * M_PI * ((float)p.seed / RAND_MAX); // Random angle in radians
+    float speed = 300.0f * (float)(p.seed2 % 100) / 100.0f; // Speed based on seed2, ranging from 0 to 300
+
+    // Compute the displacement in x and y directions
+    float dx = speed * cos(angle) * t; // Distance traveled in x
+    float dy = speed * sin(angle) * t; // Distance traveled in y
+
+    // Set the particle's new position
+   p.position = p.position + sf::Vector2f(dx, dy);
+
+
+    // Gradually fade the particle
+    uint8_t alpha = static_cast<uint8_t>(255 * (1.0f - t)); // Alpha decreases over time
+    p.color = sf::Color(255, 128, 0, alpha); // Bright orange color with fading transparency
+    }) // Initialize ParticleSource
 {
  
     
@@ -108,10 +124,13 @@ void PlayState::processSecondTileSelection(size_t i, size_t j, sf::RenderWindow 
     if (gameMove.isMoveValid(gameBoard, first.iPosition, first.jPosition, second.iPosition, second.jPosition))
     {
         gameBoard.swapTwoJewels(first.iPosition, first.jPosition, second.iPosition, second.jPosition, window);
-        scorePair p = gameBoard.refreshBoard();
+        scorePair p = gameBoard.refreshBoard(particleSource);
         for (const auto &item : p)
         {
             gameScore.increaseScore(item.first * item.second);
+
+            // sf::Vector2f matchPosition = gameBoard.getTilePosition(item.second); // Example function
+            // particleSystem.addParticle(matchPosition, sf::Color::Yellow); 
         }
         gameMove.decreaseNumberOfMoveByOne();
     }
@@ -150,7 +169,12 @@ GameState *PlayState::update(sf::RenderWindow &window, StateList &state)
     {
         return state[WIN];
     }
-   
+    // Update particle system
+    static sf::Clock particleClock;  // Dedicated clock for particles
+    float deltaTime = particleClock.restart().asSeconds();
+    
+    
+    particleSource.updateParticles(deltaTime);   
     return this;
 }
 
@@ -159,7 +183,11 @@ void PlayState::render(sf::RenderWindow &window)
     window.draw(backgroundSprite);
     gameBoard.render(window);
     gameScore.render(window);
-   
+    if(particleSource.PositionSet)
+    {
+        particleSource.draw(window);
+    }
+    
     gameTimer.render(window);
     pauseButton.render(window);
     gameMove.render(window);

@@ -13,6 +13,10 @@ Tile::Tile()
    
 }
 
+sf::Vector2f Tile::getTilePosition()
+{
+    return(tileSprite.getPosition());
+}
 
 void Tile::setTilePosition(float x, float y)
 {

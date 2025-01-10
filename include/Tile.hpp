@@ -8,6 +8,7 @@ class Tile
 public:
     Tile();
     void setTilePosition(float, float);
+    sf::Vector2f getTilePosition();
     bool isTileSelected(sf::Vector2f);
     void enableTileOutline();
     void disableTileOutline();
