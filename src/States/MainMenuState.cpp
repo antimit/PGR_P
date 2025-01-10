@@ -2,6 +2,11 @@
 #include "States/PlayState.hpp"
 #include "configs.hpp"
 #include "States/OptionState.hpp"
+#include <iostream>
+#include <fstream>
+#include <sstream>  // Include this for std::stringstream
+#include <string>
+#include <stdexcept> // For std::runtime_error
 
 using namespace	std;
 
@@ -19,6 +24,7 @@ MainMenuState::MainMenuState() : playButton(BUTTON_TEXTURE_DIRECTORY
 	backgroundPath = "main_menu.jpg";
 	Music::getInstance(MUSIC_DIRECTORY + std::string("SA_Game_mode_mixed_modes_loop.mp3")).play();
 	setBackground();
+	
 }
 
 GameState *MainMenuState::eventHandler(sf::RenderWindow &window,
@@ -30,7 +36,9 @@ GameState *MainMenuState::eventHandler(sf::RenderWindow &window,
 	{
 		if (state[PLAY] != nullptr)
             delete state[PLAY];
-		state[PLAY] = new PlayState();
+		LoadLevel& loader = LoadLevel::getInstance();
+        LevelData level = loader.loadLevel(loader.currentLevel); // Example level ID	
+		state[PLAY] = new PlayState(level);
 		return (state[PLAY]);
 	}
 	if (exitButton.isPressedButton(window, event))
@@ -58,3 +66,4 @@ void MainMenuState::render(sf::RenderWindow &window)
     optionsButton.render(window);
 	exitButton.render(window);
 }
+

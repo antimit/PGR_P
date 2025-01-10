@@ -5,6 +5,7 @@
 #include "configs.hpp"
 #include <array>
 #include <string>
+#include <iostream>
 
 enum States
 {

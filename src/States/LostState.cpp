@@ -27,7 +27,9 @@ GameState *LostState::eventHandler(sf::RenderWindow &window, StateList &state,
 	if (restartButton.isPressedButton(window, event))
 	{
 		delete state[PLAY];
-		state[PLAY] = new PlayState();
+		LoadLevel& loader = LoadLevel::getInstance();
+        LevelData level = loader.loadLevel(loader.currentLevel); // Example level ID	
+		state[PLAY] = new PlayState(level);
 		return (state[PLAY]);
 	}
 	

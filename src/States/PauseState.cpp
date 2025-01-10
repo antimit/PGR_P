@@ -17,19 +17,22 @@ PauseState::PauseState() : resumeButton(BUTTON_TEXTURE_DIRECTORY + string("resum
 
 GameState *PauseState::eventHandler(sf::RenderWindow &window, StateList &state, sf::Event &event)
 {
-    
-   if(resumeButton.isPressedButton(window,event))
-                return state[PLAY];
-    
-    if(exitButton.isPressedButton(window,event))
-                return state[MAINMENU];
-    
-   if(restartButton.isPressedButton(window,event))
-            {
-                delete state[PLAY];
-                state[PLAY] = new PlayState();
-                return state[PLAY];
-            }
+
+    if (resumeButton.isPressedButton(window, event))
+        return state[PLAY];
+
+    if (exitButton.isPressedButton(window, event))
+        return state[MAINMENU];
+
+    if (restartButton.isPressedButton(window, event))
+    {
+        delete state[PLAY];
+        LoadLevel &loader = LoadLevel::getInstance();
+        LevelData level = loader.loadLevel(loader.currentLevel); // Example level ID
+        state[PLAY] = new PlayState(level);
+
+        return state[PLAY];
+    }
     return this;
 }
 GameState *PauseState::update(sf::RenderWindow &window, StateList &state)

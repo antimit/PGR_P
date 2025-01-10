@@ -1,0 +1,27 @@
+{
+    "levels": [
+      {
+        "id": 1,
+        "background": "play_background.jpg",
+        "timer": 60,
+        "requiredScore": 1000,
+        "numberOfMoves": 30,
+        "specialItems": {
+          "bombs": 3,
+          "colorBombs": 1
+        }
+      },
+      {
+        "id": 2,
+        "background": "assets/backgrounds/play_background.jpg",
+        "timer": 45,
+        "requiredScore": 1500,
+        "numberOfMoves": 25,
+        "specialItems": {
+          "bombs": 5,
+          "colorBombs": 2
+        }
+      }
+    ]
+  }
+  

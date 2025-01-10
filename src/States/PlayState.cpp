@@ -2,6 +2,7 @@
 #include "Move.hpp"
 
 
+
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
@@ -17,12 +18,13 @@ struct ChoosenEntity
     size_t jPosition;
 };
 
+
 struct ChoosenEntity first;
 struct ChoosenEntity second;
 
 
 
-PlayState::PlayState() : gameScore(REQUIRED_SCORE), gameTimer(TIMER_COUNTDOWN), gameMove(NUM_OF_MOVE),
+PlayState::PlayState(const LevelData& levelData) : gameScore(levelData.requiredScore), gameTimer(levelData.timer), gameMove(levelData.numberOfMoves),
                          pauseButton(BUTTON_TEXTURE_DIRECTORY + string("pause_button.png")) , particleSource(50, 0.05f, [](float t, Particle &p) {
   // Generate a random direction based on the seed
     float angle = 2 * M_PI * ((float)p.seed / RAND_MAX); // Random angle in radians
@@ -43,7 +45,9 @@ PlayState::PlayState() : gameScore(REQUIRED_SCORE), gameTimer(TIMER_COUNTDOWN), 
 {
  
     
-    backgroundPath = "play_background.jpg";
+    backgroundPath = levelData.backgroundPath;
+    // std::cout << backgroundPath <<std::endl;
+    
     setBackground();
     pauseButton.setButtonPosition(0, 0);
    

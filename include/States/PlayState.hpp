@@ -10,12 +10,14 @@
 #include "Music.hpp"
 #include "ParticleSystem.hpp"
 #include "World.hpp"
+#include <fstream>
+#include "LoadLevel.hpp"
 
 
 class PlayState : public GameState
 {
 public:
-    PlayState();
+    PlayState(const LevelData& levelData);
     ~PlayState();
     virtual GameState *eventHandler(sf::RenderWindow &, StateList &, sf::Event &) override;
     virtual GameState *update(sf::RenderWindow &, StateList &) override;
