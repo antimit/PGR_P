@@ -26,7 +26,7 @@ struct ChoosenEntity second;
 
 PlayState::PlayState(const LevelData& levelData) : gameScore(levelData.requiredScore), gameTimer(levelData.timer), gameMove(levelData.numberOfMoves),
                          pauseButton(BUTTON_TEXTURE_DIRECTORY + string("pause_button.png")) , particleSource(50, 0.05f, [](float t, Particle &p) {
-  float angle = 2 * M_PI * ((float)p.seed / RAND_MAX); // Random angle in radians
+ float angle = 2 * M_PI * ((float)p.seed / RAND_MAX); // Random angle in radians
 
 // Ensure speed is always non-zero (minimum speed of 50.0f)
 float speed = 50.0f + 250.0f * (float)(p.seed2 % 100) / 100.0f; // Speed between 50 and 300
@@ -46,6 +46,7 @@ p.color = sf::Color(255, 128, 0, alpha); // Bright orange color with fading tran
 if (speed == 0.0f || alpha == 0) {
     std::cout << "Particle debug: Position(" << p.position.x << ", " << p.position.y << "), Speed: " << speed << ", Alpha: " << (int)alpha << std::endl;
 }
+
     }) // Initialize ParticleSource
 {
  
