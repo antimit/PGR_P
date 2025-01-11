@@ -39,6 +39,8 @@ private:
     
     Button pauseButton;
     ParticleSource particleSource;
+  // Dedicated clock for particles
+    float deltaTime;
     
 
    //temp

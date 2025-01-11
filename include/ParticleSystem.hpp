@@ -24,6 +24,9 @@ class ParticleSource
     const float MAX_TIME = 1e+10;
     float currTime = 0.0f;
 
+    bool stopShowing;
+    
+
     std::vector<Particle> particles;
     std::vector<sf::CircleShape> shapes;
 
@@ -67,7 +70,7 @@ public:
         float newTime = fmodf(currTime + dt, particles[i].lifetime);
 
         // Only update the particle if its lifetime has not exceeded
-        if (newTime < particles[i].lifetime)
+        if (newTime  < particles[i].lifetime)
         {
             pathFunction(newTime, particles[i]);
 
@@ -88,6 +91,11 @@ public:
             newParticles.push_back(particles[i]);
             newShapes.push_back(shapes[i]);
         }
+        else
+        {
+            
+        }
+
     }
 
     // Update the particles and shapes with the new ones
@@ -97,7 +105,14 @@ public:
     currTime += dt;
     if (currTime > MAX_TIME)
         currTime = 0.0f;
+    
 }
+
+
+
+
+
+
 
 
     void draw(sf::RenderWindow& window)
@@ -139,6 +154,11 @@ public:
 
     void setInterpolation(bool value) { interpolation = value; }
     bool PositionSet = false;
+
+    sf::Vector2f getPosition()
+    {
+        return (this->sourcePosition);
+    }
 };
 
 #endif // PARTICLE_SYSTEM_H

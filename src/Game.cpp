@@ -4,6 +4,8 @@
 #include "States/WinState.hpp"
 #include "States/LostState.hpp"
 #include "States/OptionState.hpp"
+#include <sstream>      // std::stringstream
+
 
 Game::Game() : mainWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE, sf::Style::Close), currentState(nullptr)
 {
@@ -19,7 +21,17 @@ Game::Game() : mainWindow(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TIT
 
 void Game::init()
 {
-    
+    if(!font.loadFromFile(FONT_DIRECTORY + std::string ("Xerox Sans Serif Narrow Bold.ttf")))
+    {
+        std::cout<<"Bad font"<<std::endl;
+        exit(1);
+    }
+    text.setFont(font);
+    text.setCharacterSize(20); // Size of text
+    text.setFillColor(sf::Color::White); // Text color
+    text.setPosition(10, 10); // Initial position
+
+
     statesList[MAINMENU] = new MainMenuState();
     statesList[PAUSE] = new PauseState();
     statesList[WIN] = new WinState();
@@ -27,6 +39,7 @@ void Game::init()
     statesList[OPTIONS] = new OptionsState();
     currentState = statesList[MAINMENU];
     run();
+
 }
 
 
@@ -42,8 +55,21 @@ void Game::run()
             currentState = currentState->eventHandler(mainWindow, statesList, event);
         }
         currentState = currentState->update(mainWindow, statesList);
+
+        //temp 
+
+        // Get mouse position relative to the window
+        sf::Vector2i mousePosition = sf::Mouse::getPosition(mainWindow);
+
+        // Convert mouse coordinates to a string
+        std::ostringstream coords;
+        coords << "X: " << mousePosition.x << " Y: " << mousePosition.y;
+        text.setString(coords.str());
+
+        //temp ///
         mainWindow.clear();
         currentState->render(mainWindow);
+         mainWindow.draw(text);
         mainWindow.display();
     }
 }

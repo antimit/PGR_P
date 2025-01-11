@@ -26,21 +26,26 @@ struct ChoosenEntity second;
 
 PlayState::PlayState(const LevelData& levelData) : gameScore(levelData.requiredScore), gameTimer(levelData.timer), gameMove(levelData.numberOfMoves),
                          pauseButton(BUTTON_TEXTURE_DIRECTORY + string("pause_button.png")) , particleSource(50, 0.05f, [](float t, Particle &p) {
-  // Generate a random direction based on the seed
-    float angle = 2 * M_PI * ((float)p.seed / RAND_MAX); // Random angle in radians
-    float speed = 300.0f * (float)(p.seed2 % 100) / 100.0f; // Speed based on seed2, ranging from 0 to 300
+  float angle = 2 * M_PI * ((float)p.seed / RAND_MAX); // Random angle in radians
 
-    // Compute the displacement in x and y directions
-    float dx = speed * cos(angle) * t; // Distance traveled in x
-    float dy = speed * sin(angle) * t; // Distance traveled in y
+// Ensure speed is always non-zero (minimum speed of 50.0f)
+float speed = 50.0f + 250.0f * (float)(p.seed2 % 100) / 100.0f; // Speed between 50 and 300
 
-    // Set the particle's new position
-   p.position = p.position + sf::Vector2f(dx, dy);
+// Compute displacement based on speed and time
+float dx = speed * cos(angle) * t; // Distance traveled in x
+float dy = speed * sin(angle) * t; // Distance traveled in y
 
+// Update the particle's position
+p.position = p.position + sf::Vector2f(dx, dy);
 
-    // Gradually fade the particle
-    uint8_t alpha = static_cast<uint8_t>(255 * (1.0f - t)); // Alpha decreases over time
-    p.color = sf::Color(255, 128, 0, alpha); // Bright orange color with fading transparency
+// Gradually fade the particle
+uint8_t alpha = static_cast<uint8_t>(255 * std::max(1.0f - t, 0.0f)); // Ensure alpha does not go below 0
+p.color = sf::Color(255, 128, 0, alpha); // Bright orange color with fading transparency
+
+// Optional Debugging
+if (speed == 0.0f || alpha == 0) {
+    std::cout << "Particle debug: Position(" << p.position.x << ", " << p.position.y << "), Speed: " << speed << ", Alpha: " << (int)alpha << std::endl;
+}
     }) // Initialize ParticleSource
 {
  
@@ -198,8 +203,9 @@ GameState *PlayState::update(sf::RenderWindow &window, StateList &state)
 
     // Update particle system
     static sf::Clock particleClock;  // Dedicated clock for particles
-    float deltaTime = particleClock.restart().asSeconds();
+    deltaTime = particleClock.restart().asSeconds();
     particleSource.updateParticles(deltaTime);
+    std::cout << "DeltaTime: " << deltaTime << " seconds\n";
 
     return this; // Continue in the current state
 }

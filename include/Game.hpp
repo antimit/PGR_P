@@ -17,6 +17,10 @@ public:
     void init();
     void run();
 
+    //Temp 
+    sf::Font font;
+    sf::Text text;
+
 private:
     sf::RenderWindow mainWindow;
     GameState* currentState;

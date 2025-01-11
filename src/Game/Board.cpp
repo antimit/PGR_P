@@ -267,6 +267,8 @@ scorePair Board::refreshBoard(ParticleSource &particleSource)
             handleColumnGravity(j, markedForDeletion, result, numberOfDeletedJewel, particleSource);
         }
     }
+    sf::Vector2f particlePosition = particleSource.getPosition();
+    std::cout<< "X "<< particlePosition.x <<"   Y: "<<particlePosition.y<<std::endl;
     
     return result;
 }
