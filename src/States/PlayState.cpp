@@ -26,33 +26,33 @@ struct ChoosenEntity second;
 
 PlayState::PlayState(const LevelData& levelData) : gameScore(levelData.requiredScore), gameTimer(levelData.timer), gameMove(levelData.numberOfMoves),
                          pauseButton(BUTTON_TEXTURE_DIRECTORY + string("pause_button.png")) , particleSource(50, 0.05f, [](float t, Particle &p) {
- float angle = 2 * M_PI * ((float)p.seed / RAND_MAX); // Random angle in radians
+ float angle = 2 * M_PI * ((float)p.seed / RAND_MAX); 
 
-// Ensure speed is always non-zero (minimum speed of 50.0f)
-float speed = 50.0f + 250.0f * (float)(p.seed2 % 100) / 100.0f; // Speed between 50 and 300
 
-// Compute displacement based on speed and time
-float dx = speed * cos(angle) * t; // Distance traveled in x
-float dy = speed * sin(angle) * t; // Distance traveled in y
+float speed = 50.0f + 250.0f * (float)(p.seed2 % 100) / 100.0f; 
 
-// Update the particle's position
+
+float dx = speed * cos(angle) * t; 
+float dy = speed * sin(angle) * t; 
+
+
 p.position = p.position + sf::Vector2f(dx, dy);
 
-// Gradually fade the particle
-uint8_t alpha = static_cast<uint8_t>(255 * std::max(1.0f - t, 0.0f)); // Ensure alpha does not go below 0
-p.color = sf::Color(255, 128, 0, alpha); // Bright orange color with fading transparency
 
-// Optional Debugging
-// if (speed == 0.0f || alpha == 0) {
-//     std::cout << "Particle debug: Position(" << p.position.x << ", " << p.position.y << "), Speed: " << speed << ", Alpha: " << (int)alpha << std::endl;
-// }
+uint8_t alpha = static_cast<uint8_t>(255 * std::max(1.0f - t, 0.0f)); 
+p.color = sf::Color(255, 128, 0, alpha); 
 
-    }) // Initialize ParticleSource
+
+
+
+
+
+    }) 
 {
  
     
     backgroundPath = levelData.backgroundPath;
-    // std::cout << backgroundPath <<std::endl;
+    
     
     setBackground();
     pauseButton.setButtonPosition(0, 0);
@@ -135,8 +135,8 @@ void PlayState::processSecondTileSelection(size_t i, size_t j, sf::RenderWindow 
         {
             gameScore.increaseScore(item.first * item.second);
 
-            // sf::Vector2f matchPosition = gameBoard.getTilePosition(item.second); // Example function
-            // particleSystem.addParticle(matchPosition, sf::Color::Yellow); 
+            
+            
         }
         gameMove.decreaseNumberOfMoveByOne();
     }
@@ -168,51 +168,51 @@ GameState *PlayState::update(sf::RenderWindow &window, StateList &state)
     pauseButton.HandleHover(window);
     gameTimer.updateTime();
     
-    // Check if time is up
+    
     if (gameTimer.getCountDownTime() < 0)
     {
         return state[LOST];
     }
 
-    // Check if score meets or exceeds the required score
+    
     if (gameScore.getCurrentScore() >= gameScore.getRequiredScore())
     {
-        // Try to load the next level
+        
         try
         {
             LoadLevel &loader = LoadLevel::getInstance();
             LevelData nextLevelData = loader.loadLevel(loader.currentLevel + 1);
 
-            // If successful, update PlayState with the new level data
+            
             loader.currentLevel++;
             backgroundPath = nextLevelData.backgroundPath;
             gameTimer.setCountDownTime(nextLevelData.timer);
             gameScore.setRequiredScore(nextLevelData.requiredScore);
-            gameScore.resetScore(); // Reset the current score for the new level
+            gameScore.resetScore(); 
 
             gameBoard.clearBoard();
             gameBoard.generateNewJewels();
             scorePair p = gameBoard.refreshBoard(particleSource);
 
-            // Load the new background
+            
             setBackground();
-            return this; // Stay in PlayState for the next level
+            return this; 
         }
         catch (const std::runtime_error &e)
         {
-            // If no next level, transition to the WIN state
+            
             std::cerr << "No next level: " << e.what() << std::endl;
             return state[WIN];
         }
     }
 
-    // Update particle system
-    static sf::Clock particleClock;  // Dedicated clock for particles
+    
+    static sf::Clock particleClock;  
     deltaTime = particleClock.restart().asSeconds();
     particleSource.updateParticles(deltaTime);
-    // std::cout << "DeltaTime: " << deltaTime << " seconds\n";
+    
 
-    return this; // Continue in the current state
+    return this; 
 }
 
 

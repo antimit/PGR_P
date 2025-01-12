@@ -89,4 +89,11 @@ Players can swap two adjacent candies using mouse.
 Invalid moves are detected and prevented.
 
 
+🛠️ Customization
+You can modify game parameters by editing the corresponding JSON configuration file in the project directory. The following values can be adjusted:
+
+Timer: Set the duration of the game session.
+Required Score: Specify the score needed to win the game.
+Number of Moves: Limit the total number of moves a player can make.
+To apply your changes, open the JSON file, update the values, and save the file before starting the program.
 

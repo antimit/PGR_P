@@ -4,9 +4,9 @@
 #include "States/OptionState.hpp"
 #include <iostream>
 #include <fstream>
-#include <sstream>  // Include this for std::stringstream
+#include <sstream>  
 #include <string>
-#include <stdexcept> // For std::runtime_error
+#include <stdexcept> 
 
 using namespace	std;
 
@@ -37,7 +37,7 @@ GameState *MainMenuState::eventHandler(sf::RenderWindow &window,
 		if (state[PLAY] != nullptr)
             delete state[PLAY];
 		LoadLevel& loader = LoadLevel::getInstance();
-        LevelData level = loader.loadLevel(loader.currentLevel); // Example level ID	
+        LevelData level = loader.loadLevel(loader.currentLevel); 
 		state[PLAY] = new PlayState(level);
 		return (state[PLAY]);
 	}

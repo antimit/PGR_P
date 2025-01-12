@@ -5,7 +5,7 @@
       "levelbackground": "level1.jpg",
       "levelsjewels": "level1/",
       "timer": 60,
-      "requiredScore": 200,
+      "requiredScore": 1000,
       "numberOfMoves": 30,
       "specialItems": {
         "bombs": 3,
@@ -16,9 +16,9 @@
       "id": 2,
       "levelbackground": "level2.jpg",
       "levelsjewels": "level2/",
-      "timer": 45,
+      "timer": 80,
       "requiredScore": 1500,
-      "numberOfMoves": 25,
+      "numberOfMoves": 40,
       "specialItems": {
         "bombs": 5,
         "colorBombs": 2
@@ -28,9 +28,9 @@
       "id": 3,
       "levelbackground": "level3.jpg",
       "levelsjewels": "level3/",
-      "timer": 60,
+      "timer": 100,
       "requiredScore": 2000,
-      "numberOfMoves": 50,
+      "numberOfMoves": 60,
       "specialItems": {
         "bombs": 5,
         "colorBombs": 2

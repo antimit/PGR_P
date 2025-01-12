@@ -10,7 +10,7 @@
 
 struct Particle
 {
-    sf::Vector2f position = {0.0f, 0.0f};  // Removed initialPosition
+    sf::Vector2f position = {0.0f, 0.0f};  
     float lifetime;
     int seed;
     int seed2;
@@ -32,9 +32,9 @@ class ParticleSource
 
     VecFunction pathFunction;
 
-    sf::Vector2f sourcePosition = {0.0f, 0.0f}; // Default position for particles
-    bool interpolation = false; // Interpolation is not necessary now
-    float particleSize = 20.0f; // Radius of particles
+    sf::Vector2f sourcePosition = {0.0f, 0.0f}; 
+    bool interpolation = false; 
+    float particleSize = 20.0f; 
     
 
 public:
@@ -48,20 +48,20 @@ public:
             p.seed = rand();
             p.seed2 = rand();
             p.lifetime = avgLifetime /* rand() / RAND_MAX*/;
-            p.position = sourcePosition; // Set all particles' positions to sourcePosition initially
+            p.position = sourcePosition; 
 
             particles.push_back(p);
 
             sf::CircleShape shape(particleSize);
             shape.setFillColor(p.color);
-            shape.setOrigin(particleSize, particleSize); // Center the shape
+            shape.setOrigin(particleSize, particleSize); 
             shapes.push_back(shape);
         }
     }
 
     void updateParticles(float dt)
 {
-    // We'll use two vectors to store the updated particles and shapes
+    
     std::vector<Particle> newParticles;
     std::vector<sf::CircleShape> newShapes;
 
@@ -69,25 +69,25 @@ public:
     {
         float newTime = fmodf(currTime + dt, particles[i].lifetime);
 
-        // Only update the particle if its lifetime has not exceeded
+        
         if (newTime  < particles[i].lifetime)
         {
             pathFunction(newTime, particles[i]);
 
-            // Update particle visual properties
+            
             shapes[i].setPosition(particles[i].position);
 
-            // Transparent fill color: fading effect based on the remaining lifetime
+            
             sf::Color fillColor = particles[i].color;
-            fillColor.a = static_cast<uint8_t>(255 * (1.0f - newTime / particles[i].lifetime)); // Fade out
+            fillColor.a = static_cast<uint8_t>(255 * (1.0f - newTime / particles[i].lifetime)); 
             shapes[i].setFillColor(fillColor);
 
-            // Outline for bubble effect
-            sf::Color outlineColor = sf::Color(255, 255, 255, 200); // Light reflective outline
+            
+            sf::Color outlineColor = sf::Color(255, 255, 255, 200); 
             shapes[i].setOutlineColor(outlineColor);
-            shapes[i].setOutlineThickness(2.0f); // Adjust thickness as needed
+            shapes[i].setOutlineThickness(2.0f); 
 
-            // Keep the particle and shape for the next frame
+            
             newParticles.push_back(particles[i]);
             newShapes.push_back(shapes[i]);
         }
@@ -98,7 +98,7 @@ public:
 
     }
 
-    // Update the particles and shapes with the new ones
+    
     particles = std::move(newParticles);
     shapes = std::move(newShapes);
 
@@ -123,12 +123,12 @@ public:
         }
     }
 
-    // Set position of the particle system, particles will then start moving from here
+    
     void setPosition(sf::Vector2f position)
     {
         sourcePosition = position;
 
-        // Update all particles' positions when the system's position is updated
+        
         for (auto& particle : particles)
         {
             particle.position = sourcePosition;
@@ -141,7 +141,7 @@ public:
         for (auto& shape : shapes)
         {
             shape.setRadius(particleSize);
-            shape.setOrigin(particleSize, particleSize); // Center the shape
+            shape.setOrigin(particleSize, particleSize); 
         }
     }
 
@@ -161,4 +161,4 @@ public:
     }
 };
 
-#endif // PARTICLE_SYSTEM_H
+#endif 

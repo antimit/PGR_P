@@ -48,7 +48,6 @@ void Jewel::setJewelPath()
     LoadLevel &loader = LoadLevel::getInstance();
     LevelData level = loader.loadLevel(loader.currentLevel);
     jewelPath = level.jewelsPath;
-    std::cout << TEXTURE_DIRECTORY + jewelPath << std ::endl;
 }
 
 Jewel::~Jewel(){};

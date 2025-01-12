@@ -18,20 +18,20 @@ using namespace std;
 
 Board::Board()
 {
-    
+
     for (auto &row : listOfJewels)
         for (auto &jewel : row)
             jewel = nullptr;
-    
+
     for (auto &row : listOfTiles)
         for (auto &tile : row)
             tile = nullptr;
-    
+
     shuffleJewels(listOfJewels);
-    
+
     while (!isJewelsCombinationValid())
         validateJewels();
-    
+
     for (size_t i = 0; i < numberOfRow; i++)
     {
 
@@ -46,12 +46,11 @@ Board::Board()
 
 Board::~Board()
 {
-    
+
     for (auto &row : listOfTiles)
         for (auto &tile : row)
             delete tile;
 
-    
     for (auto &row : listOfJewels)
         for (auto &jewel : row)
             delete jewel;
@@ -59,15 +58,14 @@ Board::~Board()
 
 void Board::render(sf::RenderWindow &window)
 {
-    
+
     for (auto row : listOfTiles)
         for (auto tile : row)
             tile->render(window);
-    
+
     for (auto row : listOfJewels)
         for (auto jewel : row)
             jewel->render(window);
-    
 }
 
 size_t Board::getNumberOfRow() const
@@ -90,16 +88,14 @@ JewelList Board::getListOfJewels() const
     return listOfJewels;
 }
 
-
 Jewel *Board::generateRandomJewel()
 {
     Jewel *jewel;
     MemoryTracker &memoryTracker = MemoryTracker::getInstance();
     switch (generateRandomNumber(GOLDEN_AMBER, MOON_LAVENDER))
     {
- 
- 
-   case GOLDEN_AMBER:
+
+    case GOLDEN_AMBER:
         jewel = new GoldenAmber();
         break;
     case RADIANT_AMETHYST:
@@ -117,15 +113,6 @@ Jewel *Board::generateRandomJewel()
     case MOON_LAVENDER:
         jewel = new MoonLavender();
         break;
-    // case FIERY_LIME:
-    //     jewel = new FieryLime();
-    //     break;
-    // case LIGHTNING_AMETHYST:
-    //     jewel = new LightningAmethyst();
-    //     break;
-    // case SOLAR_TEAL:
-    //     jewel = new SolarTeal();
-    //     break;
     }
 
     return jewel;
@@ -142,10 +129,9 @@ void Board::shuffleJewels(JewelList &listOfJewels)
         }
 }
 
-
 bool Board::isJewelsCombinationValid() const
 {
-    
+
     for (size_t i = 0; i < numberOfRow; i++)
     {
         for (size_t j = 0; j < numberOfColumn - 2; j++)
@@ -157,7 +143,6 @@ bool Board::isJewelsCombinationValid() const
         }
     }
 
-    
     for (size_t j = 0; j < numberOfColumn; j++)
     {
         for (size_t i = 0; i < numberOfRow - 2; i++)
@@ -172,20 +157,18 @@ bool Board::isJewelsCombinationValid() const
     return true;
 }
 
-
 bool Board::isCombinationInvalid(size_t i1, size_t j1, size_t i2, size_t j2, size_t i3, size_t j3) const
 {
     if (*listOfJewels[i1][j1] == *listOfJewels[i2][j2] && *listOfJewels[i2][j2] == *listOfJewels[i3][j3])
     {
-        return true; 
+        return true;
     }
-    return false; 
+    return false;
 }
-
 
 void Board::validateJewels()
 {
-    
+
     for (size_t i = 0; i < numberOfRow; i++)
     {
         for (size_t j = 0; j < numberOfColumn - 2; j++)
@@ -194,7 +177,6 @@ void Board::validateJewels()
         }
     }
 
-    
     for (size_t j = 0; j < numberOfColumn; j++)
     {
         for (size_t i = 0; i < numberOfRow - 2; i++)
@@ -203,7 +185,6 @@ void Board::validateJewels()
         }
     }
 }
-
 
 void Board::validateAndReplaceJewels(size_t i1, size_t j1, size_t i2, size_t j2, size_t i3, size_t j3)
 {
@@ -216,24 +197,22 @@ void Board::validateAndReplaceJewels(size_t i1, size_t j1, size_t i2, size_t j2,
 
 void Board::swapTwoJewels(size_t i1, size_t j1, size_t i2, size_t j2, sf::RenderWindow &window)
 {
-    const float animationDuration = 0.3f; 
+    const float animationDuration = 0.3f;
     sf::Clock clock;
     float elapsedTime = 0.0f;
 
     float dx = 0.0f;
     float dy = 0.0f;
 
-    
     if (i1 == i2)
-    {                                    
-        dx = (j1 > j2 ? -32.0f : 32.0f); 
+    {
+        dx = (j1 > j2 ? -32.0f : 32.0f);
     }
     else
-    {                                    
-        dy = (i1 > i2 ? -32.0f : 32.0f); 
+    {
+        dy = (i1 > i2 ? -32.0f : 32.0f);
     }
 
-    
     while (elapsedTime < animationDuration)
     {
         float deltaTime = clock.restart().asSeconds();
@@ -250,17 +229,15 @@ void Board::swapTwoJewels(size_t i1, size_t j1, size_t i2, size_t j2, sf::Render
             listOfJewels[i2][j2]->moveJewel(0, -dy * deltaTime / animationDuration);
         }
 
-        render(window); 
+        render(window);
         listOfJewels[i1][j1]->render(window);
         listOfJewels[i2][j2]->render(window);
         window.display();
     }
 
-    
     listOfJewels[i1][j1]->moveJewel(dx, dy);
     listOfJewels[i2][j2]->moveJewel(-dx, -dy);
 
-    
     std::swap(listOfJewels[i1][j1], listOfJewels[i2][j2]);
 }
 
@@ -270,26 +247,23 @@ scorePair Board::refreshBoard(ParticleSource &particleSource)
     scorePair result;
     std::vector<std::vector<bool>> markedForDeletion(numberOfRow, std::vector<bool>(numberOfColumn, false));
 
-    
     while (!isJewelsCombinationValid())
     {
         markMatches(markedForDeletion);
 
-        
         for (size_t j = 0; j < numberOfColumn; j++)
         {
             handleColumnGravity(j, markedForDeletion, result, numberOfDeletedJewel, particleSource);
         }
     }
     sf::Vector2f particlePosition = particleSource.getPosition();
-    // std::cout<< "X "<< particlePosition.x <<"   Y: "<<particlePosition.y<<std::endl;
-    
+
     return result;
 }
 
 void Board::markMatches(std::vector<std::vector<bool>> &markedForDeletion)
 {
-    
+
     for (size_t i = 0; i < numberOfRow; i++)
     {
         for (size_t j = 0; j < numberOfColumn - 2; j++)
@@ -304,7 +278,6 @@ void Board::markMatches(std::vector<std::vector<bool>> &markedForDeletion)
         }
     }
 
-    
     for (size_t j = 0; j < numberOfColumn; j++)
     {
         for (size_t i = 0; i < numberOfRow - 2; i++)
@@ -325,7 +298,6 @@ void Board::handleColumnGravity(size_t column, std::vector<std::vector<bool>> &m
     us jewelScore = 0;
     size_t writeIndex = numberOfRow - 1;
 
-    
     for (int i = numberOfRow - 1; i >= 0; i--)
     {
         if (!markedForDeletion[i][column])
@@ -343,36 +315,28 @@ void Board::handleColumnGravity(size_t column, std::vector<std::vector<bool>> &m
             {
                 jewelScore = listOfJewels[i][column]->getJewelScore();
             }
-             // Add particle effect
-             sf::Color jewelColor = listOfJewels[i][column]->getJewelColor();
+
+            sf::Color jewelColor = listOfJewels[i][column]->getJewelColor();
             sf::Vector2f jewelPosition(column * 64.0f, i * 64.0f);
 
-            // Add particle effect for this jewel
-            sf::Vector2f explosionPosition = listOfTiles[i][column]->getTilePosition(); // Replace with actual position logic
+            sf::Vector2f explosionPosition = listOfTiles[i][column]->getTilePosition();
             particleSource.setPosition(explosionPosition);
 
-
-            // Optionally, customize particle size, lifetime, etc., for a dramatic effect
             particleSource.setParticleSize(5.0f);
             particleSource.PositionSet = true;
 
-            // Update particle system to reflect the explosion
-            // particleSource.updateParticles(1.0f); // Trigger immediate update
-            
             delete listOfJewels[i][column];
             listOfJewels[i][column] = nullptr;
             numberOfDeletedJewel++;
         }
     }
 
-    
     for (int i = writeIndex; i >= 0; i--)
     {
         listOfJewels[i][column] = generateRandomJewel();
         listOfJewels[i][column]->setJewelPosition(column, i);
     }
 
-    
     if (numberOfDeletedJewel > 0)
     {
         result.push_back(std::make_pair(numberOfDeletedJewel, jewelScore));
@@ -380,17 +344,15 @@ void Board::handleColumnGravity(size_t column, std::vector<std::vector<bool>> &m
     }
 }
 
-
 void Board::clearBoard()
 {
     for (size_t i = 0; i < numberOfRow; i++)
     {
         for (size_t j = 0; j < numberOfColumn; j++)
         {
-            // Clear the jewels and tiles
+
             delete listOfJewels[i][j];
-            listOfJewels[i][j] = nullptr;  // Set jewels to nullptr or reset them
-            // tiles[i][j]->resetTile();  // Reset tiles
+            listOfJewels[i][j] = nullptr;
         }
     }
 }
@@ -401,7 +363,7 @@ void Board::generateNewJewels()
     {
         for (size_t j = 0; j < numberOfColumn; j++)
         {
-            if (listOfJewels[i][j] == nullptr)  // Check for uninitialized positions
+            if (listOfJewels[i][j] == nullptr)
             {
                 listOfJewels[i][j] = generateRandomJewel();
                 listOfJewels[i][j]->setJewelPosition(j, i);

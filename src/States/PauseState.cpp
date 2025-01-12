@@ -28,7 +28,7 @@ GameState *PauseState::eventHandler(sf::RenderWindow &window, StateList &state, 
     {
         delete state[PLAY];
         LoadLevel &loader = LoadLevel::getInstance();
-        LevelData level = loader.loadLevel(loader.currentLevel); // Example level ID
+        LevelData level = loader.loadLevel(loader.currentLevel); 
         state[PLAY] = new PlayState(level);
 
         return state[PLAY];

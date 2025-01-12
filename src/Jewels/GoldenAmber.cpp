@@ -6,7 +6,7 @@ GoldenAmber::GoldenAmber() : Jewel(GOLDEN_AMBER_SCORE)
 {
     try
     {
-        std::cout << TEXTURE_DIRECTORY + jewelPath << std ::endl;
+        
         setJewelPath();
         if (!this->jewelTexture.loadFromFile(TEXTURE_DIRECTORY + jewelPath+ std:: string("GoldenAmber.png")))
         {
