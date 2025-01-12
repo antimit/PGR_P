@@ -3,14 +3,15 @@
 #include <vector>
 #include "RandomNumberGenerator.hpp"
 
-#include "Jewels/AmberYellow.hpp"
-#include "Jewels/AmethystPurple.hpp"
-#include "Jewels/Aquamarine.hpp"
-#include "Jewels/CeruleanBlue.hpp"
-#include "Jewels/EmeraldGreen.hpp"
-#include "Jewels/LavenderPurple.hpp"
-#include "Jewels/LimeGreen.hpp"
-#include "Jewels/TealGreen.hpp"
+#include "Jewels/GoldenAmber.hpp"
+#include "Jewels/RadiantAmethyst.hpp"
+#include "Jewels/OceanAquamarine.hpp"
+#include "Jewels/SkyCerulean.hpp"
+#include "Jewels/ForestEmerald.hpp"
+#include "Jewels/MoonLavender.hpp"
+#include "Jewels/FieryLime.hpp"
+#include "Jewels/LightningAmethyst.hpp"
+#include "Jewels/SolarTeal.hpp"
 #include "MemoryTracker.hpp"
 
 using namespace std;
@@ -94,34 +95,37 @@ Jewel *Board::generateRandomJewel()
 {
     Jewel *jewel;
     MemoryTracker &memoryTracker = MemoryTracker::getInstance();
-    switch (generateRandomNumber(AMBER_YELLOW, TEALGREEN))
+    switch (generateRandomNumber(GOLDEN_AMBER, MOON_LAVENDER))
     {
  
  
-    case AMBER_YELLOW:
-        jewel = new AmberYellow();
+   case GOLDEN_AMBER:
+        jewel = new GoldenAmber();
         break;
-    case  AQEAMARINE:
-        jewel = new AmethystPurple();
+    case RADIANT_AMETHYST:
+        jewel = new RadiantAmethyst();
         break;
-    case CERULEANBLUE:
-        jewel = new CeruleanBlue();
+    case OCEAN_AQUAMARINE:
+        jewel = new OceanAquamarine();
         break;
-    case EMERALDGREEN:
-        jewel = new EmeraldGreen();
+    case SKY_CERULEAN:
+        jewel = new SkyCerulean();
         break;
-    case LAVENDERPURPLE:
-        jewel = new LavenderPurple();
+    case FOREST_EMERALD:
+        jewel = new ForestEmerald();
         break;
-    case LIMEGREEN:
-        jewel = new LimeGreen();
+    case MOON_LAVENDER:
+        jewel = new MoonLavender();
         break;
-    case TEALGREEN:
-        jewel = new TealGreen();
-        break;
-    case AMETHYSTPURPLE:
-        jewel = new EmeraldGreen();
-        break;
+    // case FIERY_LIME:
+    //     jewel = new FieryLime();
+    //     break;
+    // case LIGHTNING_AMETHYST:
+    //     jewel = new LightningAmethyst();
+    //     break;
+    // case SOLAR_TEAL:
+    //     jewel = new SolarTeal();
+    //     break;
     }
 
     return jewel;
@@ -373,5 +377,35 @@ void Board::handleColumnGravity(size_t column, std::vector<std::vector<bool>> &m
     {
         result.push_back(std::make_pair(numberOfDeletedJewel, jewelScore));
         numberOfDeletedJewel = 0;
+    }
+}
+
+
+void Board::clearBoard()
+{
+    for (size_t i = 0; i < numberOfRow; i++)
+    {
+        for (size_t j = 0; j < numberOfColumn; j++)
+        {
+            // Clear the jewels and tiles
+            delete listOfJewels[i][j];
+            listOfJewels[i][j] = nullptr;  // Set jewels to nullptr or reset them
+            // tiles[i][j]->resetTile();  // Reset tiles
+        }
+    }
+}
+
+void Board::generateNewJewels()
+{
+    for (size_t i = 0; i < numberOfRow; i++)
+    {
+        for (size_t j = 0; j < numberOfColumn; j++)
+        {
+            if (listOfJewels[i][j] == nullptr)  // Check for uninitialized positions
+            {
+                listOfJewels[i][j] = generateRandomJewel();
+                listOfJewels[i][j]->setJewelPosition(j, i);
+            }
+        }
     }
 }

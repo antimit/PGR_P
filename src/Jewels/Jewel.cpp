@@ -1,8 +1,9 @@
 #include "Jewels/Jewel.hpp"
+#include "LoadLevel.hpp"
 
 Jewel::Jewel(unsigned int score)
 {
-    
+       
     if (score >= 10 && score <= 15)
         this->score = score;
 }
@@ -40,6 +41,14 @@ bool Jewel::operator==(const Jewel &secondJewel)
 sf::Color Jewel::getJewelColor()
 {
     return jewelSprite.getColor();
+}
+
+void Jewel::setJewelPath()
+{
+    LoadLevel &loader = LoadLevel::getInstance();
+    LevelData level = loader.loadLevel(loader.currentLevel);
+    jewelPath = level.jewelsPath;
+    std::cout << TEXTURE_DIRECTORY + jewelPath << std ::endl;
 }
 
 Jewel::~Jewel(){};

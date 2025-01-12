@@ -31,11 +31,10 @@ public:
     void validateAndReplaceJewels(size_t i1, size_t j1, size_t i2, size_t j2, size_t i3, size_t j3);
     bool isCombinationInvalid(size_t i1, size_t j1, size_t i2, size_t j2, size_t i3, size_t j3) const;
 
-    // void refreshHorizontally(scorePair &result, us &numberOfDeletedJewel);
-    // void refreshVertically(scorePair &result, us &numberOfDeletedJewel);
-    // void handleHorizontalMatch(int i, size_t j, scorePair &result, us &numberOfDeletedJewel);
-    // void handleVerticalMatch(int i, size_t j, scorePair &result, us &numberOfDeletedJewel);
-    // void shiftColumnUp(int i, size_t column, us jewelScore);
+    void clearBoard();
+    void generateNewJewels();
+
+   
 
     
     

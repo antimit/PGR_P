@@ -190,6 +190,10 @@ GameState *PlayState::update(sf::RenderWindow &window, StateList &state)
             gameScore.setRequiredScore(nextLevelData.requiredScore);
             gameScore.resetScore(); // Reset the current score for the new level
 
+            gameBoard.clearBoard();
+            gameBoard.generateNewJewels();
+            scorePair p = gameBoard.refreshBoard(particleSource);
+
             // Load the new background
             setBackground();
             return this; // Stay in PlayState for the next level

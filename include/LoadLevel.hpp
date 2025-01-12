@@ -9,6 +9,7 @@
 // Structure to hold level data
 struct LevelData {
     std::string backgroundPath;
+    std::string jewelsPath;
     int timer;
     int requiredScore;
     int numberOfMoves;

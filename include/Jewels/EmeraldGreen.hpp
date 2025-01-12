@@ -1,5 +1,5 @@
-#ifndef VIOLET_JEWEL_IG
-#define VIOLET_JEWEL_IG
+#ifndef EMERALD_GREEN_IG
+#define EMERALD_GREEN_IG
 
 #include <Jewels/Jewel.hpp>
 
