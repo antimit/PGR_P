@@ -7,14 +7,17 @@
 #include <iostream>
 
 
+
 enum JewelsEnum
 {
-    YELLOW_JEWEL,
-    GREEN_JEWEL,
-    RED_JEWEL,
-    BLUE_JEWEL,
-    PINK_JEWEL,
-    VIOLET_JEWEL
+    AMBER_YELLOW,
+    AMETHYSTPURPLE,
+    AQEAMARINE,
+    CERULEANBLUE,
+    EMERALDGREEN,
+    LAVENDERPURPLE,
+    LIMEGREEN,
+    TEALGREEN
 };
 
 class Jewel

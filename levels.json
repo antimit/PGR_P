@@ -2,7 +2,7 @@
     "levels": [
       {
         "id": 1,
-        "background": "play_background.jpg",
+        "background": "level1.jpg",
         "timer": 60,
         "requiredScore": 1200,
         "numberOfMoves": 30,
@@ -13,7 +13,7 @@
       },
       {
         "id": 2,
-        "background": "play_background.jpg",
+        "background": "level2.jpg",
         "timer": 45,
         "requiredScore": 1500,
         "numberOfMoves": 25,
@@ -21,7 +21,20 @@
           "bombs": 5,
           "colorBombs": 2
         }
+      },
+      {
+        "id": 3,
+        "background": "level3.jpg",
+        "timer": 60,
+        "requiredScore": 2000,
+        "numberOfMoves": 50,
+        "specialItems": {
+          "bombs": 5,
+          "colorBombs": 2
+        }
       }
+
+      
     ]
   }
   

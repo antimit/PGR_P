@@ -11,8 +11,6 @@ void GameState::setBackground()
     // std::cout << address <<std::endl;
     // std::cout << backgroundPath <<std::endl;
 
-
-
     if(!backgroundTexture.loadFromFile(address))
     {
         std::cout <<"Couldnt't load the file " << std::endl;

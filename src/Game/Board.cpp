@@ -3,12 +3,14 @@
 #include <vector>
 #include "RandomNumberGenerator.hpp"
 
-#include "Jewels/YellowJewel.hpp"
-#include "Jewels/GreenJewel.hpp"
-#include "Jewels/RedJewel.hpp"
-#include "Jewels/BlueJewel.hpp"
-#include "Jewels/PinkJewel.hpp"
-#include "Jewels/VioletJewel.hpp"
+#include "Jewels/AmberYellow.hpp"
+#include "Jewels/AmethystPurple.hpp"
+#include "Jewels/Aquamarine.hpp"
+#include "Jewels/CeruleanBlue.hpp"
+#include "Jewels/EmeraldGreen.hpp"
+#include "Jewels/LavenderPurple.hpp"
+#include "Jewels/LimeGreen.hpp"
+#include "Jewels/TealGreen.hpp"
 #include "MemoryTracker.hpp"
 
 using namespace std;
@@ -92,25 +94,33 @@ Jewel *Board::generateRandomJewel()
 {
     Jewel *jewel;
     MemoryTracker &memoryTracker = MemoryTracker::getInstance();
-    switch (generateRandomNumber(YELLOW_JEWEL, VIOLET_JEWEL))
+    switch (generateRandomNumber(AMBER_YELLOW, TEALGREEN))
     {
-    case YELLOW_JEWEL:
-        jewel = new YellowJewel();
+ 
+ 
+    case AMBER_YELLOW:
+        jewel = new AmberYellow();
         break;
-    case GREEN_JEWEL:
-        jewel = new GreenJewel();
+    case  AQEAMARINE:
+        jewel = new AmethystPurple();
         break;
-    case RED_JEWEL:
-        jewel = new RedJewel();
+    case CERULEANBLUE:
+        jewel = new CeruleanBlue();
         break;
-    case BLUE_JEWEL:
-        jewel = new BlueJewel();
+    case EMERALDGREEN:
+        jewel = new EmeraldGreen();
         break;
-    case PINK_JEWEL:
-        jewel = new PinkJewel();
+    case LAVENDERPURPLE:
+        jewel = new LavenderPurple();
         break;
-    case VIOLET_JEWEL:
-        jewel = new VioletJewel();
+    case LIMEGREEN:
+        jewel = new LimeGreen();
+        break;
+    case TEALGREEN:
+        jewel = new TealGreen();
+        break;
+    case AMETHYSTPURPLE:
+        jewel = new EmeraldGreen();
         break;
     }
 
@@ -268,7 +278,7 @@ scorePair Board::refreshBoard(ParticleSource &particleSource)
         }
     }
     sf::Vector2f particlePosition = particleSource.getPosition();
-    std::cout<< "X "<< particlePosition.x <<"   Y: "<<particlePosition.y<<std::endl;
+    // std::cout<< "X "<< particlePosition.x <<"   Y: "<<particlePosition.y<<std::endl;
     
     return result;
 }

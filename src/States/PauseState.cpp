@@ -8,7 +8,7 @@ PauseState::PauseState() : resumeButton(BUTTON_TEXTURE_DIRECTORY + string("resum
                            exitButton(BUTTON_TEXTURE_DIRECTORY + string("exit_button.png")),
                            restartButton(BUTTON_TEXTURE_DIRECTORY + string("restart_button.png"))
 {
-    backgroundPath = "pause_background.png";
+    backgroundPath = "pause_background.jpg";
     setBackground();
     this->resumeButton.setButtonPosition(235, 200);
     this->restartButton.setButtonPosition(235, 400);

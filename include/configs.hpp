@@ -19,6 +19,7 @@
 #define TILE_TEXTURE_DIRECTORY "assets/tilesTexture/"
 #define DATA_DIRECTORY "assets/datas/"
 #define MUSIC_DIRECTORY "assets/music/"
+#define LEVEL_DIRECTORY "assets/levels/"
 
 // Board Settings
 #define TILE_HEIGHT 64.f

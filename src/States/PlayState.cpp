@@ -43,9 +43,9 @@ uint8_t alpha = static_cast<uint8_t>(255 * std::max(1.0f - t, 0.0f)); // Ensure 
 p.color = sf::Color(255, 128, 0, alpha); // Bright orange color with fading transparency
 
 // Optional Debugging
-if (speed == 0.0f || alpha == 0) {
-    std::cout << "Particle debug: Position(" << p.position.x << ", " << p.position.y << "), Speed: " << speed << ", Alpha: " << (int)alpha << std::endl;
-}
+// if (speed == 0.0f || alpha == 0) {
+//     std::cout << "Particle debug: Position(" << p.position.x << ", " << p.position.y << "), Speed: " << speed << ", Alpha: " << (int)alpha << std::endl;
+// }
 
     }) // Initialize ParticleSource
 {
@@ -206,7 +206,7 @@ GameState *PlayState::update(sf::RenderWindow &window, StateList &state)
     static sf::Clock particleClock;  // Dedicated clock for particles
     deltaTime = particleClock.restart().asSeconds();
     particleSource.updateParticles(deltaTime);
-    std::cout << "DeltaTime: " << deltaTime << " seconds\n";
+    // std::cout << "DeltaTime: " << deltaTime << " seconds\n";
 
     return this; // Continue in the current state
 }

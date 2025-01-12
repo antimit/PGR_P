@@ -18,8 +18,8 @@ MainMenuState::MainMenuState() : playButton(BUTTON_TEXTURE_DIRECTORY
     exitButton.change_scale(1.0f,0.70f);
     optionsButton.change_scale(1.0f,0.70f);
 
-	playButton.setButtonPosition(250, 700);
-    optionsButton.setButtonPosition(250,800);
+	playButton.setButtonPosition(250, 600);
+    optionsButton.setButtonPosition(250,750);
 	exitButton.setButtonPosition(250, 900);
 	backgroundPath = "main_menu.jpg";
 	Music::getInstance(MUSIC_DIRECTORY + std::string("SA_Game_mode_mixed_modes_loop.mp3")).play();

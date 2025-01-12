@@ -7,7 +7,7 @@ OptionsState::OptionsState() : mainmenuButton(BUTTON_TEXTURE_DIRECTORY
 
 {
 	
-	backgroundPath = "options_background.png";
+	backgroundPath = "options_background.jpg";
 	setBackground();
 	this->mainmenuButton.setButtonPosition(500, 500);
 
