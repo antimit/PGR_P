@@ -201,7 +201,7 @@ GameState *PlayState::update(sf::RenderWindow &window, StateList &state)
         catch (const std::runtime_error &e)
         {
             
-            std::cerr << "No next level: " << e.what() << std::endl;
+            // std::cerr << "No next level: " << e.what() << std::endl;
             return state[WIN];
         }
     }
